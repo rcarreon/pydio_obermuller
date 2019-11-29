@@ -1,9 +1,9 @@
 ### Common ###
 variable  "ami" 			{ default = "ami-015954d5e5548d13b" }
 variable  "type" 			{ default = "t2.micro" }
-variable  "key"				{ default = "iac-obermuller" }
+variable  "key"				{ default = "iac" }
 variable  "org"				{ default = "rob" }
-variable  "project"			{ default = "iac-obermuller" }
+variable  "project"			{ default = "iac" }
 variable  "tier_app"			{ default = "app" }
 variable  "vpc"				{ default = "vpc-db86babc"}
 variable  "access_key"		  	{  }

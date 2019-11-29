@@ -40,25 +40,36 @@ yum -y install pydio mariadb-server mariadb  httpd.x86_64 php-mysql.x86_64 php-m
 #
 ## TODO### 
 #
-
 cat<<EOF> /etc/httpd/conf.d/pydio.conf
 Alias /pydio /usr/share/pydio
 Alias /pydio_public /var/lib/pydio/public
+<VirtualHost *:80>
+    ServerName pydio.net
+    DocumentRoot "/usr/share/pydio"
+    ErrorLog /usr/share/pydio/logs/pydio_error.log
+    CustomLog /usr/share/pydio/logs/pydio_access.log combined
 
-<Directory "/usr/share/pydio">
+
+    <Directory "/usr/share/pydio">
         Options FollowSymlinks
-        AllowOverride none
+        AllowOverride None
         Require all granted
-</Directory>
-
-
-<Directory "/var/lib/pydio/public">
+    </Directory>
+    <Directory "/var/lib/pydio/public">
         AllowOverride Limit FileInfo
         Order allow,deny
         Allow from all
         php_value error_reporting 2
-</Directory>
+    </Directory>
+</VirtualHost>
 EOF
+mkdir /usr/share/pydio/logs/ 
+
+cd /home/ec2-user/ && wget https://static.wixstatic.com/media/04ab37_0e53282879604ecbbea9d4e8677fcbbc~mv2_d_2952_1478_s_2.png/v1/fill/w_354,h_172,al_c,q_80,usm_0.66_1.00_0.01/Obermoller%20Engineering%20Logo.webp
+
+sed -i 's/post_max_size\ =\ 8M/post_max_size\ =\ 1024M/g' /etc/php.ini
+sed -i 's/upload_max_filesize\ =\ 2M/upload_max_filesize\ =\ 1024M/g' /etc/php.ini
+### OLD PYDIO ###
 
 systemctl start mariadb  
 systemctl enable mariadb.service  
@@ -73,4 +84,5 @@ GRANT ALL ON pydiodb.* to 'pydiouser'@'localhost' IDENTIFIED BY '${PYDIO_PASS}';
 FLUSH PRIVILEGES;
 EOF
 mysql -u root -p${ROOT_PASS} < /home/ec2-user/setup.sql
+cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp  /usr/share/pydio/plugins/gui.ajax/res/themes/orbit/images/LoginBoxLogo.png
 setenforce 0 
