@@ -84,5 +84,15 @@ GRANT ALL ON pydiodb.* to 'pydiouser'@'localhost' IDENTIFIED BY '${PYDIO_PASS}';
 FLUSH PRIVILEGES;
 EOF
 mysql -u root -p${ROOT_PASS} < /home/ec2-user/setup.sql
+
+cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp  /usr/share/pydio/plugins/gui.ajax/AjxpLogo250.png
+cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp   /usr/share/pydio/plugins/gui.ajax/PydioLogo250.png
 cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp  /usr/share/pydio/plugins/gui.ajax/res/themes/orbit/images/LoginBoxLogo.png
+cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp   /usr/share/pydio/plugins/gui.ajax/res/themes/orbit/images/PydioLogo250.png
+cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp  /usr/share/pydio/plugins/gui.ajax/res/themes/oxygen/images/LoginBoxLogo.png
+cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp   /usr/share/pydio/plugins/gui.ajax/res/themes/oxygen/images/PydioLogo250.png
+cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp  /usr/share/pydio/plugins/gui.ajax/res/themes/umbra/images/LoginBoxLogo.png
+cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp  /usr/share/pydio/plugins/gui.ajax/res/themes/umbra/images/LoginBoxLogo.png
+cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp   /usr/share/pydio/plugins/gui.ajax/res/themes/vision/images/PydioLogo250.png
+cp /home/ec2-user/Obermoller\ Engineering\ Logo.webp   /usr/share/pydio/plugins/gui.ajax/res/themes/vision/images/PydioLogo250.png
 setenforce 0 
